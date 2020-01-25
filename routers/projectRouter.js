@@ -25,6 +25,17 @@ router.get('/:id', validateProjectId,(req, res) => {
     })
 });
 
+router.get('/:id/actions', validateProjectId, (req, res) => {
+    const {id} = req.params
+    db.get(id)
+        .then(project=> {
+            res.status(200).json(project.actions)
+        })
+        .catch(err=> {
+            res.status(500).json({error: `could not retrieve project at id ${id}`})
+        })
+})
+
 router.post('/', validateNewProject,(req, res) => {
     const body = req.body
     db.insert(body)

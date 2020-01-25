@@ -6,8 +6,8 @@ const projectRouter = require('./routers/projectRouter');
 server.use(cors())
 server.use(express.json())
 server.use(logger)
-server.use('/api/action', actionRouter);
-server.use('/api/project', projectRouter);
+server.use('/api/actions', actionRouter);
+server.use('/api/projects', projectRouter);
 
 
 

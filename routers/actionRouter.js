@@ -1,5 +1,6 @@
 const express = require('express');
 const db = require('../data/helpers/actionModel')
+const projectDb = require('../data/helpers/projectModel')
 
 const router = express.Router();
 router.use(express.json()) 
@@ -98,8 +99,19 @@ function validateActionId(req, res, next) {
 
 function validateNewAction(req, res, next) {
     const body = req.body
-    if(body.project_id && body.description && body.notes)
-        next()
+    if(body.project_id && body.description && body.notes) {
+        projectDb.get(body.project_id)
+            .then(project=> {
+                if(project)
+                    next()
+                else
+                    res.status(400).json({error: `Project at specified id of ${body.project_id} does not exist`})
+            })
+            .catch(err => {
+                res.status(500).json({error: 'could not add action. server error'})
+            })
+    }
+        
     else 
         res.status(400).json({ error: 'New action must include the following fields: project_id, description, notes.'})
 }
