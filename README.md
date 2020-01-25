@@ -40,13 +40,23 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [ ] Mention two parts of Express that you learned about this week.
 
+Middleware, routers, json
+
 - [ ] Describe Middleware?
+
+functions that take the action or object, work on it or mutate it, and then relay it to another action or process.  examples include security and logging, as well as basic data field checks for required fields.
 
 - [ ] Describe a Resource?
 
+A set of data that can be retrieved from the server by end users or other parts of the app.
+
 - [ ] What can the API return to help clients know if a request was successful?
 
+status numbers are convenient and conventional ways to let clients know how their request was handled; either successfully or unsuccessfully 
+
 - [ ] How can we partition our application into sub-applications?
+
+use express routers to help make code easy to read and more modular and re-usable in separate parts
 
 ## Minimum Viable Product
 
