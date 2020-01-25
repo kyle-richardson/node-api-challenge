@@ -1,24 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useEffect, useState} from 'react';
 import './App.css';
+import axios from 'axios'
+import ProjectList from "./ProjectList"
 
 function App() {
+  const [update, setUpdate] = useState(false)
+  const [projectList, setProjectList] = useState([])
+
+  useEffect(()=> {
+    getProjects()
+  }, [update])
+
+  const forceUpdate = ()=> {
+    setUpdate(!update)
+  }
+  const getProjects = ()=> {
+    axios
+      .get('http://localhost:8000/api/projects')
+      .then(res=> {
+        setProjectList(res.data)
+      })
+      .catch(err=> console.log(err))
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Lambda Project Scheme</h1>
+      <ProjectList projectList={projectList} forceUpdate={forceUpdate}/>
     </div>
   );
 }

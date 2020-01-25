@@ -1,5 +1,12 @@
+body {
+  background-color: rgb(0, 2, 36);
+  color: white;
+}
 .App {
-  text-align: center;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
 .App-logo {
@@ -35,4 +42,31 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+button {
+  border: 0;
+  background: rgb(42, 42, 110);
+  color: white;
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.project-card {
+  border: 1px solid blue;
+  border-radius: 6px;
+  width: 70%;
+  margin-left: 10%;
+  margin-bottom: 20px;
+  padding: 20px;
+}
+
+.action-card {
+  border: 1px solid red;
+  border-radius: 6px;
+  width: 70%;
+  margin-left:10%;
+  margin-bottom: 10px;
+  padding: 20px;
 }
